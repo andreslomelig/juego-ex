@@ -58,6 +58,9 @@ class mago : public Personaje
         string buff;
         string estado;
         string atqE = "debil";
+        int PA = 2;
+        int PS = 3;
+        int PE =3;
     public:
 
         mago();
@@ -70,6 +73,9 @@ class mago : public Personaje
         string Getestado() { return estado; }
         void Setestado(string val) { estado = val; }
          string GetatqE(){ return atqE;}
+        int GetPA(){return PA;}
+        int GetPS(){return PS;}
+        int GetPe(){return PE;}
 
        friend ostream& operator<<(ostream &out, mago &m){
             out<<"Nombre: "<<m.Getnombre()<<endl;
@@ -86,7 +92,7 @@ class mago : public Personaje
 
 };
 
-mago::mago() : Personaje("mago juan", 100, 50, 20, 35, 7)
+mago::mago() : Personaje("mago juan", 100, 50, 20, 35, 14)
 {
 }
 
@@ -97,6 +103,9 @@ class guerrero : public Personaje
         string buff;
         string estado;
         string atqE = "debil";
+        int PA = 2;
+        int PS = 3;
+        int PE =3;
 
     public:
         guerrero();
@@ -108,6 +117,9 @@ class guerrero : public Personaje
         string Getestado() { return estado; }
         void Setestado(string val) { estado = val; }
          string GetatqE(){ return atqE;}
+        int GetPA(){return PA;}
+        int GetPS(){return PS;}
+        int GetPe(){return PE;}
         
 
     protected:
@@ -126,7 +138,7 @@ class guerrero : public Personaje
            out<<"Buff: "<<m.buff<<endl;
        }
 };
-guerrero::guerrero() : Personaje("Guerrero pedro",120,70,10,20,5)
+guerrero::guerrero() : Personaje("Guerrero pedro",120,70,10,20,18)
 {
 }
 
@@ -137,6 +149,9 @@ class Arquero : public Personaje
         string buff;
         string estado;
         string atqE = "vulnerable";
+        int PA = 2;
+        int PS = 3;
+        int PE = 3;
 
     public:
         Arquero();
@@ -148,6 +163,9 @@ class Arquero : public Personaje
         string Getestado() { return estado; }
         void Setestado(string val) { estado = val; }
         string GetatqE(){ return atqE;}
+        int GetPA(){return PA;}
+        int GetPS(){return PS;}
+        int GetPe(){return PE;}
 
     protected:
 
@@ -165,7 +183,7 @@ class Arquero : public Personaje
            out<<"Buff: "<<m.buff<<endl;
        }
 };
-Arquero::Arquero() : Personaje("Arquero Rose",80,80,5,20,8)
+Arquero::Arquero() : Personaje("Arquero Rose",80,80,5,20,20)
 {
 }
 

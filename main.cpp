@@ -8,8 +8,9 @@ typedef long long LL;
 #define TestCase(x) for(int Te=1;Te<=x;Te++)
 
 using namespace std;
-    int jug1;
-    int jug2;
+
+int jug1;
+int jug2;
 
 void clearConsole(){
     system("pause");
@@ -21,6 +22,7 @@ int main()
     int a=0;
     while(a==0)
     {
+        int gana;
         cout<<"Hola bienvenido..... elije un jugador\n";
         cout<<"Jugador 1 elige..\n";
         cout<<"1- Mago Juan\n";
@@ -51,7 +53,7 @@ int main()
                     cout<<"jugador uno elja que hacer.....\n";
                     cout<<p1;
                     cin>>sel1;
-                    if(sel1==1)
+                    if(sel1==1 && (p1.GetpA()-p1.GetPA())>=0)
                     {
                         int ataque;
                         if(p1.Getdebuff()=="debil")
@@ -74,26 +76,33 @@ int main()
                             int res=p2.Getvida()+p2.Getdefensa()-p1.Getataque();
                             p2.Setvida(res);
                         }
+                        p1.SetpA(p1.GetpA()-p1.GetPA());
                     }
-                    if(sel1==2)
+                    else if(sel1==2 && (p1.GetpA()-p1.GetPS())>=0)
                     {
                         int res = p1.Getcuracion()+p1.Getvida();
+                        p1.SetpA(p1.GetpA()-p1.GetPS());
                     }
-                    if(sel1==3)
+                    else if(sel1==3 && (p1.GetpA()-p1.GetPe())>=0)
                     {
                         p2.Setdebuff(p1.GetatqE());
+                        p1.SetpA(p1.GetpA()-p1.GetPe());
                     }
-                    if(sel1==4)
+                    else if(sel1==4)
                     {
 
                     }
-                    if(p2.Getvida()<0){break;}
+                    else{
+                        cout<<"Puntos de ataque insuficientes\n";
+                    }
+                    if(p2.Getvida()<0){gana=1;break;}
+                    if(p1.GetpA()<=0 && p2.GetpA()<=0){cout<<"Empate\n";gana=0;break;}
                     clearConsole();
                     pelea3();
                     cout<<"jugador dos elja que hacer.....\n";
                     cout<<p2;
                     cin>>sel2;
-                    if(sel2==1)
+                    if(sel2==1 && (p2.GetpA()-p2.GetPA())>=0)
                     {
                         int ataque;
                         if(p2.Getdebuff()=="debil")
@@ -116,22 +125,29 @@ int main()
                             int res=p1.Getvida()+p1.Getdefensa()-ataque;
                             p1.Setvida(res);
                         }
+                        p2.SetpA(p2.GetpA()-p2.GetPA());
                     }
-                    if(sel2==2)
+                    else if(sel2==2 && (p2.GetpA()-p2.GetPA())>=0)
                     {
                         int res = p2.Getcuracion()+p2.Getvida();
+                        p2.SetpA(p2.GetpA()-p2.GetPS());
                     }
-                    if(sel2==3)
+                    else if(sel2==3 &&  (p2.GetpA()-p2.GetPe())>=0)
                     {
                         p1.Setdebuff(p2.GetatqE());
+                        p2.SetpA(p2.GetpA()-p2.GetPe());
                     }
-                    if(sel2==4)
+                    else if(sel2==4)
                     {
 
                     }
+                    else{
+                        cout<<"Puntos de ataque insuficientes\n";
+                    }
+                    if(p1.GetpA()<=0 && p2.GetpA()<=0){cout<<"Empate\n";gana=0;break;}
                     clearConsole();
-
                 }
+                if(p1.Getvida()<=0){gana=2;}
             }
             if(jug2==2)
             {
@@ -880,8 +896,9 @@ int main()
             }
         }
         
+        cout<<"Gano el jugador "<<gana<<"\n";
         cout<<"volver a jugar elja 0\n";
-        cout<<"presione cualquier otra tecla si no \n";
+        cout<<"presione cualquier otro numero si no \n";
         cin>>a;
 
     }
