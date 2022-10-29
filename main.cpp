@@ -17,6 +17,15 @@ void clearConsole(){
     system("cls");
 }
 
+void arch(int gan)
+{
+    FILE *arch;
+    arch=fopen("Resultados.dat","wb");
+    if(arch==NULL) exit(1);
+    fwrite(&gan, sizeof(int), 1, arch);
+}
+
+
 int main()
 {
     int a=0;
@@ -49,6 +58,20 @@ int main()
                 while(p1.Getvida()> 0 && p2.Getvida()>0)
                 {
                     int sel1,sel2;
+                    p1.SeBP();
+                    if(p1.Getbuff()!="" && p1.GetBP()<=0 )
+                    {
+                        p1.Setbuff("");
+                        if(p1.Getbuff()=="Defensa"){p1.Setdefensa(p1.Getdefensa()-5);}
+                        if(p1.Getbuff()=="Fuerza"){p1.Setataque(p1.Getataque()-5);}
+                    }
+                    p2.SeBP();
+                    if(p2.Getbuff()!="" && p2.GetBP()<=0 )
+                    {
+                        p2.Setbuff("");
+                        if(p2.Getbuff()=="Defensa"){p2.Setdefensa(p2.Getdefensa()-5);}
+                        if(p2.Getbuff()=="Fuerza"){p2.Setataque(p2.Getataque()-5);}
+                    }
                     pelea3();
                     cout<<"jugador uno elja que hacer.....\n";
                     cout<<p1;
@@ -88,9 +111,13 @@ int main()
                         p2.Setdebuff(p1.GetatqE());
                         p1.SetpA(p1.GetpA()-p1.GetPe());
                     }
-                    else if(sel1==4)
+                    else if(sel1==4 && (p1.GetpA()-1)>=0)
                     {
-
+                        p1.Setbuff(p1.Getestado());
+                        p1.SetpA(p1.GetpA()-1);
+                        p1.SetBP();
+                        if(p1.Getbuff()=="Defensa"){p1.Setdefensa(p1.Getdefensa()+5);}
+                        if(p1.Getbuff()=="Fuerza"){p1.Setataque(p1.Getataque()+5);}
                     }
                     else{
                         cout<<"Puntos de ataque insuficientes\n";
@@ -137,9 +164,13 @@ int main()
                         p1.Setdebuff(p2.GetatqE());
                         p2.SetpA(p2.GetpA()-p2.GetPe());
                     }
-                    else if(sel2==4)
+                    else if(sel2==4 && (p2.GetpA()-1)>=0)
                     {
-
+                        p2.Setbuff(p2.Getestado());
+                        p2.SetpA(p2.GetpA()-1);
+                        p2.SetBP();
+                        if(p2.Getbuff()=="Defensa"){p2.Setdefensa(p2.Getdefensa()+5);}
+                        if(p2.Getbuff()=="Fuerza"){p2.Setataque(p2.Getataque()+5);}
                     }
                     else{
                         cout<<"Puntos de ataque insuficientes\n";
@@ -897,6 +928,7 @@ int main()
         }
         
         cout<<"Gano el jugador "<<gana<<"\n";
+        arch(gana);
         cout<<"volver a jugar elja 0\n";
         cout<<"presione cualquier otro numero si no \n";
         cin>>a;

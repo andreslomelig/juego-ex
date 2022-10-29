@@ -11,6 +11,7 @@ class Personaje
         int pA;
         int curacion;
         int ataque;
+        int BP=0;
     public:
         Personaje();
         Personaje(string , int , int , int, int, int);
@@ -34,9 +35,9 @@ class Personaje
         int Getataque() { return ataque; }
         void Setataque(int val) { ataque = val; }
         void atacado(int );
-
-
-
+        void SetBP(){BP=2;}
+        void SeBP(){BP--;}
+        int GetBP(){return BP;}
 };
 
 Personaje::Personaje(){};
@@ -56,11 +57,12 @@ class mago : public Personaje
      private:
         string debuff;
         string buff;
-        string estado;
+        string estado = "Defensa";
         string atqE = "debil";
         int PA = 2;
         int PS = 3;
         int PE =3;
+
     public:
 
         mago();
@@ -85,6 +87,7 @@ class mago : public Personaje
             out<<"1 - 2PA "<<"ataque: "<<m.Getataque()<<endl;
             out<<"2 - 3PA "<<"Curacion: "<<m.Getcuracion()<<endl;
             out<<"3 - 3PA brillo magico: "<<m.GetatqE()<<endl;
+            out<<"4 - 1PA Barrera magica: Defensa"<<endl;
            out<<"Debuff: "<<m.debuff<<endl;
            out<<"Buff: "<<m.buff<<endl;
        }
@@ -101,7 +104,7 @@ class guerrero : public Personaje
      private:
         string debuff;
         string buff;
-        string estado;
+        string estado = "Fuerza";
         string atqE = "debil";
         int PA = 2;
         int PS = 3;
@@ -134,6 +137,7 @@ class guerrero : public Personaje
             out<<"1 - 2PA "<<"ataque: "<<m.Getataque()<<endl;
             out<<"2 - 3PA "<<"Curacion: "<<m.Getcuracion()<<endl;
             out<<"3 - 3PA Espada cortante: "<<m.GetatqE()<<endl;
+            out<<"4 - 1PA Espada santa: Fuerza"<<endl;
            out<<"Debuff: "<<m.debuff<<endl;
            out<<"Buff: "<<m.buff<<endl;
        }
@@ -147,7 +151,7 @@ class Arquero : public Personaje
      private:
         string debuff;
         string buff;
-        string estado;
+        string estado = "Defensa";
         string atqE = "vulnerable";
         int PA = 2;
         int PS = 3;
@@ -179,6 +183,7 @@ class Arquero : public Personaje
             out<<"1 - 2PA "<<"ataque: "<<m.Getataque()<<endl;
             out<<"2 - 3PA "<<"Curacion: "<<m.Getcuracion()<<endl;
             out<<"3 - 3PA flecha belica: "<<m.GetatqE()<<endl;
+            out<<"4 - 1PA escudo de flechas: Defensa"<<endl;
            out<<"Debuff: "<<m.debuff<<endl;
            out<<"Buff: "<<m.buff<<endl;
        }
